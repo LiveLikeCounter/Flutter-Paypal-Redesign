@@ -22,8 +22,17 @@ flutter:
 
   assets:
     - assets/images/chip_thumb.png
+    - assets/images/icon_home.png
+    - assets/images/icon_orion_user-group.png
+    - assets/images/icon_recieve.png
+    - assets/images/icon_school-bell.png
+    - assets/images/icon_send.png
+    - assets/images/icon_settings.png
+    - assets/images/icon_shop.png
+    - assets/images/Nike.png
     - assets/images/Paypal-logo-header.png
     - assets/images/Paypal-logo.png
+    - assets/images/photo.png
     - assets/images/Visa-logo.png
 
   fonts:
@@ -36,4 +45,4 @@ flutter:
         - asset: assets/fonts/sfprotext/SF-Pro-Text-Bold.otf
     - family: sfprotext
       fonts:
-        - asset: assets/fonts/vistolsanalight/VistolSans-Light.otf
+        - asset: assets/fonts/vistolsanslight/VistolSans-Light.otf
