@@ -27,16 +27,17 @@ class _ProfileState extends State<Profile> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                )
+                ),
               ],
             ),
             body: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
+                Image.asset('assets/images/if_1_avatar_2754574.png', scale: 2.2),
                 Text(
-                  'Test',
-                  style: TextStyle(color: Colors.white),
+                  'Ragnar Lothbrok',
+                  style: TextStyle(fontFamily: 'worksans', fontSize: 20, fontWeight: FontWeight.w500, color: Colors.white),
                 ),
               ],
             )),
