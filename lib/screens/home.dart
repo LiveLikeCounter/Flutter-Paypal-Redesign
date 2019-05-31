@@ -10,133 +10,18 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  var index = 0;
-
   @override
   Widget build(BuildContext context) {
-    return PageView(
-      children: <Widget>[
-        Scaffold(
-          backgroundColor: Colors.white,
-          appBar: _mainAppBar(),
-          body: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                _paypalCard(context),
-                _activityText(),
-                _activityList(),
-              ],
-            ),
-          ),
-          bottomNavigationBar: BottomNavigationBar(
-            currentIndex: index,
-            onTap: (int index) {
-              setState(() {
-                this.index = index;
-              });
-            },
-            backgroundColor: Colors.white,
-            type: BottomNavigationBarType.fixed,
-            selectedFontSize: 12,
-            unselectedFontSize: 12,
-            elevation: 9,
-            items: [
-              BottomNavigationBarItem(
-                icon: ClipOval(
-                  child: Container(
-                    color:
-                        index == 0 ? PaypalColors.LightBlue : PaypalColors.Grey,
-                    child: Image.asset(
-                      "assets/images/icon_home.png",
-                      fit: BoxFit.scaleDown,
-                      width: 35.0,
-                      height: 35.0,
-                    ),
-                  ),
-                ),
-                title: Text(
-                  'Home',
-                  style: TextStyle(fontFamily: "worksans"),
-                ),
-              ),
-              BottomNavigationBarItem(
-                  icon: ClipOval(
-                    child: Container(
-                      color: index == 1
-                          ? PaypalColors.LightBlue
-                          : PaypalColors.Grey,
-                      child: Image.asset(
-                        "assets/images/icon_send.png",
-                        fit: BoxFit.scaleDown,
-                        width: 35.0,
-                        height: 35.0,
-                      ),
-                    ),
-                  ),
-                  title: Text(
-                    'Send',
-                    style: TextStyle(fontFamily: "worksans"),
-                  )),
-              BottomNavigationBarItem(
-                icon: ClipOval(
-                  child: Container(
-                    color:
-                        index == 2 ? PaypalColors.LightBlue : PaypalColors.Grey,
-                    child: Image.asset(
-                      "assets/images/icon_recieve.png",
-                      fit: BoxFit.scaleDown,
-                      width: 35.0,
-                      height: 35.0,
-                    ),
-                  ),
-                ),
-                title: Text(
-                  'Recieve',
-                  style: TextStyle(fontFamily: "worksans"),
-                ),
-              ),
-              BottomNavigationBarItem(
-                icon: ClipOval(
-                  child: Container(
-                    color:
-                        index == 3 ? PaypalColors.LightBlue : PaypalColors.Grey,
-                    child: Image.asset(
-                      "assets/images/icon_orion_user-group.png",
-                      fit: BoxFit.scaleDown,
-                      width: 35.0,
-                      height: 35.0,
-                    ),
-                  ),
-                ),
-                title: Text(
-                  'Raise money',
-                  style: TextStyle(fontFamily: "worksans"),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          _paypalCard(context),
+          _activityText(),
+          _activityList(),
+        ],
+      ),
     );
   }
-}
-
-AppBar _mainAppBar() {
-  return AppBar(
-    leading: Image.asset(
-      'assets/images/icon_settings.png',
-      color: PaypalColors.DarkBlue,
-    ),
-    title: Center(
-      child: Image.asset('assets/images/Paypal-logo-header.png', height: 25),
-    ),
-    actions: <Widget>[
-      Image.asset('assets/images/icon_school-bell.png',
-          color: PaypalColors.DarkBlue)
-    ],
-    backgroundColor: Colors.transparent,
-    elevation: 0.0,
-  );
 }
 
 Container _paypalCard(context) {
@@ -393,3 +278,5 @@ BoxDecoration _tileDecoration() {
     ],
   );
 }
+
+

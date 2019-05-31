@@ -10,7 +10,7 @@ This Flutter project is inspired from the winner *Jordan Fokoua* of the Uplabs �
 - Install the dependicies
 - Run it 🚀
 
-## Help me make more examples 💥
+## Help me make more examples
 
 Please, ⭐️ this repo if you like it.
 

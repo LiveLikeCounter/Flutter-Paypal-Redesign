@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './screens/home.dart';
+import 'package:flutter_paypalredesign/screens/app.dart';
 
 void main() => runApp(PaypalApp());
 
@@ -9,7 +9,7 @@ class PaypalApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      home: App(),
     );
   }
 }
