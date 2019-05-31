@@ -9,12 +9,19 @@ class PaypalApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeApp(),
+      home: Home(),
     );
   }
 }
 
-class HomeApp extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  var index = 0;
+
   @override
   Widget build(BuildContext context) {
     return PageView(
@@ -31,96 +38,115 @@ class HomeApp extends StatelessWidget {
               ],
             ),
           ),
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: index,
+            onTap: (int index) {
+              setState(() {
+                this.index = index;
+              });
+            },
+            backgroundColor: Colors.white,
+            type: BottomNavigationBarType.fixed,
+            selectedFontSize: 12,
+            unselectedFontSize: 12,
+            elevation: 9,
+
+            items: [
+              BottomNavigationBarItem(
+                icon: ClipOval(
+                  child: Container(
+                    color:
+                        index == 0 ? PaypalColors.LightBlue : PaypalColors.Grey,
+                    child: Image.asset(
+                      "assets/images/icon_home.png",
+                      fit: BoxFit.scaleDown,
+                      width: 35.0,
+                      height: 35.0,
+                    ),
+                  ),
+                ),
+                title: Text(
+                  'Home',
+                  style: TextStyle(fontFamily: "worksans"),
+                ),
+              ),
+              BottomNavigationBarItem(
+                  icon: ClipOval(
+                    child: Container(
+                      color: index == 1
+                          ? PaypalColors.LightBlue
+                          : PaypalColors.Grey,
+                      child: Image.asset(
+                        "assets/images/icon_send.png",
+                        fit: BoxFit.scaleDown,
+                        width: 35.0,
+                        height: 35.0,
+                      ),
+                    ),
+                  ),
+                  title: Text(
+                    'Send',
+                    style: TextStyle(fontFamily: "worksans"),
+                  )),
+              BottomNavigationBarItem(
+                icon: ClipOval(
+                  child: Container(
+                    color:
+                        index == 2 ? PaypalColors.LightBlue : PaypalColors.Grey,
+                    child: Image.asset(
+                      "assets/images/icon_recieve.png",
+                      fit: BoxFit.scaleDown,
+                      width: 35.0,
+                      height: 35.0,
+                    ),
+                  ),
+                ),
+                title: Text(
+                  'Recieve',
+                  style: TextStyle(fontFamily: "worksans"),
+                ),
+              ),
+              BottomNavigationBarItem(
+                icon: ClipOval(
+                  child: Container(
+                    color:
+                        index == 3 ? PaypalColors.LightBlue : PaypalColors.Grey,
+                    child: Image.asset(
+                      "assets/images/icon_orion_user-group.png",
+                      fit: BoxFit.scaleDown,
+                      width: 35.0,
+                      height: 35.0,
+                    ),
+                  ),
+                ),
+                title: Text(
+                  'Raise money',
+                  style: TextStyle(fontFamily: "worksans"),
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     );
   }
 }
 
-Container _activityText() {
-  return Container(
-    decoration: BoxDecoration(
-        border: Border(
-            bottom: BorderSide(width: 1, color: PaypalColors.LightGrey19))),
-    margin: EdgeInsets.symmetric(horizontal: 15),
-    padding: EdgeInsets.only(bottom: 5),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        Text('Activity',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'VIEW ALL',
-              style: TextStyle(fontSize: 10, color: PaypalColors.Grey),
-            ),
-            Icon(Icons.chevron_right, color: PaypalColors.Black50),
-          ],
-        ),
-      ],
+AppBar _mainAppBar() {
+  return AppBar(
+    leading: Image.asset(
+      'assets/images/icon_settings.png',
+      color: PaypalColors.DarkBlue,
     ),
-  );
-}
-
-BoxDecoration _tileDecoration() {
-  return BoxDecoration(
-    color: Colors.white,
-    border: Border.all(color: Colors.white, width: 0, style: BorderStyle.solid),
-    borderRadius: BorderRadius.all(
-      Radius.circular(5.0),
+    title: Center(
+      child: Image.asset('assets/images/Paypal-logo-header.png', height: 25),
     ),
-    boxShadow: [
-      BoxShadow(
-          color: Colors.grey,
-          offset: Offset(0, 0),
-          blurRadius: 3,
-          spreadRadius: 1)
+    actions: <Widget>[
+      Image.asset('assets/images/icon_school-bell.png',
+          color: PaypalColors.DarkBlue)
     ],
-  );
-}
-
-ListView _activityList() {
-  return ListView(
-    shrinkWrap: true,
-    padding: EdgeInsets.all(15),
-    children: <Widget>[
-      Container(
-        margin: EdgeInsets.only(bottom: 15),
-        decoration: _tileDecoration(),
-        child: ListTile(
-          leading: Image.asset('assets/images/Nike.png'),
-          title: Text('Nike Medieval'),
-          subtitle: Text('Jan 21, 2019'),
-          trailing: Text('-249,99 USD'),
-        ),
-      ),
-      Container(
-        margin: EdgeInsets.only(bottom: 15),
-        decoration: _tileDecoration(),
-        child: ListTile(
-          leading: Image.asset('assets/images/photo.png'),
-          title: Text('Lagertha Lothbrok'),
-          subtitle: Text('Jan 18, 2019'),
-          trailing: Text('+102,00 USD'),
-        ),
-      ),
-      Container(
-        margin: EdgeInsets.only(bottom: 15),
-        decoration: _tileDecoration(),
-        child: ListTile(
-          leading: CircleAvatar(
-              radius: 20,
-              backgroundImage: AssetImage('assets/images/icon_shop.png'),
-              backgroundColor: PaypalColors.LightBlue),
-          title: Text('Spotify Finance Limited'),
-          subtitle: Text('Jan 11, 2019'),
-          trailing: Text('-9,99 USD'),
-        ),
-      ),
-    ],
+    backgroundColor: Colors.transparent,
+    elevation: 0.0,
   );
 }
 
@@ -137,7 +163,7 @@ Container _paypalCard() {
       ),
       boxShadow: [
         BoxShadow(
-            color: Colors.grey,
+            color: PaypalColors.LightGrey19,
             offset: Offset(0, 3),
             blurRadius: 6,
             spreadRadius: 1)
@@ -153,12 +179,16 @@ Container _paypalCard() {
               children: <Widget>[
                 Image.asset('assets/images/Paypal-logo.png', height: 30),
                 SizedBox(width: 20),
-                Text('BALANCE',
-                    style:
-                        TextStyle(color: PaypalColors.DarkBlue, fontSize: 12)),
+                Text(
+                  'BALANCE',
+                  style: TextStyle(
+                      color: PaypalColors.DarkBlue,
+                      fontFamily: "worksans",
+                      fontSize: 12),
+                ),
               ],
             ),
-            Icon(Icons.info_outline)
+            Icon(Icons.info_outline, size: 18)
           ],
         ),
         SizedBox(height: 20),
@@ -171,14 +201,25 @@ Container _paypalCard() {
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                    Text('\$', style: TextStyle(fontSize: 25)),
+                    Text(
+                      '\$',
+                      style: TextStyle(fontFamily: "vistolsans", fontSize: 25),
+                    ),
                     SizedBox(width: 13),
-                    Text('452,20', style: TextStyle(fontSize: 45)),
+                    Text(
+                      '452,20',
+                      style: TextStyle(fontFamily: "sfprotext", fontSize: 45),
+                    ),
                     SizedBox(width: 13),
                   ],
                 ),
-                Text('Available',
-                    style: TextStyle(color: PaypalColors.Grey, fontSize: 17)),
+                Text(
+                  'Available',
+                  style: TextStyle(
+                      fontFamily: "worksans",
+                      color: PaypalColors.Grey,
+                      fontSize: 17),
+                ),
               ],
             )
           ],
@@ -191,14 +232,19 @@ Container _paypalCard() {
               child: FlatButton(
                 color: PaypalColors.LightGrey,
                 textColor: PaypalColors.DarkBlue,
-                child: Text("MR.RAGNAR LOTHBROK",
-                    style:
-                        TextStyle(color: PaypalColors.DarkBlue, fontSize: 12)),
+                child: Text(
+                  "MR.RAGNAR LOTHBROK",
+                  style: TextStyle(
+                      fontFamily: "worksans",
+                      color: PaypalColors.DarkBlue,
+                      fontSize: 12),
+                ),
                 onPressed: () {
                   print('MR.');
                 },
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0)),
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
               ),
             ),
             Spacer()
@@ -209,18 +255,145 @@ Container _paypalCard() {
   );
 }
 
-AppBar _mainAppBar() {
-  return AppBar(
-    leading: Image.asset(
-      'assets/images/icon_settings.png',
-      color: PaypalColors.DarkBlue,
+Container _activityText() {
+  return Container(
+    decoration: BoxDecoration(
+        border: Border(
+            bottom: BorderSide(width: 1, color: PaypalColors.LightGrey19))),
+    margin: EdgeInsets.only(left: 15, right: 15, top: 20, bottom: 5),
+    padding: EdgeInsets.only(bottom: 5),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Text(
+          'Activity',
+          style: TextStyle(
+              fontFamily: "worksans",
+              fontSize: 15,
+              fontWeight: FontWeight.w600),
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'VIEW ALL',
+              style: TextStyle(
+                  fontFamily: "worksans",
+                  fontWeight: FontWeight.w400,
+                  fontSize: 10,
+                  color: PaypalColors.Grey),
+            ),
+            Icon(Icons.chevron_right, color: PaypalColors.Black50),
+          ],
+        ),
+      ],
     ),
-    title: Center(child: Image.asset('assets/images/Paypal-logo-header.png', height: 25),),
-    actions: <Widget>[
-      Image.asset('assets/images/icon_school-bell.png',
-          color: PaypalColors.DarkBlue)
+  );
+}
+
+ListView _activityList() {
+  return ListView(
+    shrinkWrap: true,
+    physics: ClampingScrollPhysics(),
+    padding: EdgeInsets.all(15),
+    children: <Widget>[
+      Container(
+        margin: EdgeInsets.only(bottom: 15),
+        decoration: _tileDecoration(),
+        child: ListTile(
+          leading: Image.asset('assets/images/Nike.png'),
+          title: Text(
+            'Nike Medieval',
+            style: TextStyle(
+                fontFamily: "worksans",
+                fontWeight: FontWeight.w500,
+                color: Colors.black),
+          ),
+          subtitle: Text(
+            'Jan 21, 2019',
+            style:
+                TextStyle(fontFamily: "worksans", fontWeight: FontWeight.w300),
+          ),
+          trailing: Text(
+            '-249,99 USD',
+            style: TextStyle(fontFamily: "worksans"),
+          ),
+        ),
+      ),
+      Container(
+        margin: EdgeInsets.only(bottom: 15),
+        decoration: _tileDecoration(),
+        child: ListTile(
+          leading: Image.asset('assets/images/photo.png'),
+          title: Text(
+            'Lagertha Lothbrok',
+            style: TextStyle(
+                fontFamily: "worksans",
+                fontWeight: FontWeight.w500,
+                color: Colors.black),
+          ),
+          subtitle: Text(
+            'Jan 18, 2019',
+            style:
+                TextStyle(fontFamily: "worksans", fontWeight: FontWeight.w300),
+          ),
+          trailing: Text(
+            '+102,00 USD',
+            style: TextStyle(fontFamily: "worksans"),
+          ),
+        ),
+      ),
+      Container(
+        margin: EdgeInsets.only(bottom: 15),
+        decoration: _tileDecoration(),
+        child: ListTile(
+          leading: ClipOval(
+            child: Container(
+              color: PaypalColors.LightBlue,
+              child: Image.asset(
+                "assets/images/icon_shop.png",
+                fit: BoxFit.scaleDown,
+                width: 35.0,
+                height: 35.0,
+              ),
+            ),
+          ),
+          title: Text(
+            'Spotify Finance Limited',
+            style: TextStyle(
+                fontFamily: "worksans",
+                fontWeight: FontWeight.w500,
+                color: Colors.black),
+          ),
+          subtitle: Text(
+            'Jan 11, 2019',
+            style:
+                TextStyle(fontFamily: "worksans", fontWeight: FontWeight.w300),
+          ),
+          trailing: Text(
+            '-9,99 USD',
+            style: TextStyle(fontFamily: "worksans"),
+          ),
+        ),
+      ),
     ],
-    backgroundColor: Colors.transparent,
-    elevation: 0.0,
+  );
+}
+
+BoxDecoration _tileDecoration() {
+  return BoxDecoration(
+    color: Colors.white,
+    border: Border.all(color: Colors.white, width: 0, style: BorderStyle.solid),
+    borderRadius: BorderRadius.all(
+      Radius.circular(5.0),
+    ),
+    boxShadow: [
+      BoxShadow(
+          color: PaypalColors.LightGrey19,
+          offset: Offset(0, 0),
+          blurRadius: 3,
+          spreadRadius: 1)
+    ],
   );
 }

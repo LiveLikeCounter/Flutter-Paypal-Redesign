@@ -36,13 +36,45 @@ flutter:
     - assets/images/Visa-logo.png
 
   fonts:
+    # w100 Thin, the least thick
+    # w200 Extra-light
+    # w300 Light
+    # w400 Normal / regular / plain
+    # w500 Medium
+    # w600 Semi-bold
+    # w700 Bold
+    # w800 Extra-bold
+    # w900 Black, the most thick
     - family: sfprotext
       fonts:
         - asset: assets/fonts/sfprotext/SF-Pro-Text-Regular.otf
-        - asset: assets/fonts/sfprotext/SF-Pro-Text-Semibold.otf
+          weight: 300
         - asset: assets/fonts/sfprotext/SF-Pro-Text-Medium.otf
           weight: 500
         - asset: assets/fonts/sfprotext/SF-Pro-Text-Bold.otf
-    - family: sfprotext
+          weight: 600
+        - asset: assets/fonts/sfprotext/SF-Pro-Text-Semibold.otf
+          weight: 700
+    - family: vistolsans
       fonts:
         - asset: assets/fonts/vistolsanslight/VistolSans-Light.otf
+    - family: worksans
+      fonts:
+        - asset: assets/fonts/worksans/WorkSans-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/worksans/WorkSans-Light.ttf
+          weight: 200
+        - asset: assets/fonts/worksans/WorkSans-Regular.ttf
+          weight: 300
+        - asset: assets/fonts/worksans/WorkSans-Semibold.ttf
+          weight: 400
+        - asset: assets/fonts/worksans/WorkSans-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/worksans/WorkSans-Bold.ttf
+          weight: 600
+        - asset: assets/fonts/worksans/WorkSans-SemiBold.ttf
+          weight: 700
+        - asset: assets/fonts/worksans/WorkSans-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/worksans/WorkSans-Black.ttf
+          weight: 900
