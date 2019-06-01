@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_paypalredesign/util.dart';
+import 'package:flutter_paypalredesign/screens/send2.dart';
 
 class Send1 extends StatefulWidget {
   @override
@@ -16,7 +17,10 @@ class _Send1State extends State<Send1> {
         appBar: AppBar(
           automaticallyImplyLeading: true,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.black,),
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
             onPressed: () => Navigator.pop(context, false),
           ),
           title: Text('Send to Floki',
@@ -91,12 +95,24 @@ class _Send1State extends State<Send1> {
                                     color: PaypalColors.Grey),
                               ),
                               SizedBox(width: 5),
-                              Text(
-                                '0,00',
-                                style: TextStyle(
-                                    fontFamily: "worksans",
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500),
+                              InkWell(
+                                child: Text(
+                                  '0,00',
+                                  style: TextStyle(
+                                      fontFamily: "worksans",
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute<Null>(
+                                      builder: (BuildContext context) {
+                                        return Send2();
+                                      },
+                                      fullscreenDialog: true,
+                                    ),
+                                  );
+                                },
                               ),
                             ],
                           ),

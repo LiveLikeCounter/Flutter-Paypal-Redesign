@@ -91,7 +91,6 @@ class _SendState extends State<Send> {
                       subtitle: Text('paypal.me/manosthegods',
                           style: TextStyle(fontFamily: "worksans")),
                       onTap: () {
-                        print('Tabbed');
                         Navigator.of(context).push(
                           MaterialPageRoute(builder: (context) => Send1()),
                         );
