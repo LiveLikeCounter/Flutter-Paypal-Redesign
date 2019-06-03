@@ -35,7 +35,7 @@ class _Send2State extends State<Send2> {
   }
 
   _startPayment() {
-    print('Start payment');
+    Navigator.of(context).pop(_controller.numberValue);
   }
 
   @override
@@ -44,6 +44,7 @@ class _Send2State extends State<Send2> {
       debugShowCheckedModeBanner: false,
       home: Container(
         child: Scaffold(
+          backgroundColor: Colors.white,
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             elevation: 0,
@@ -57,7 +58,7 @@ class _Send2State extends State<Send2> {
                 icon: Icon(CommunityMaterialIcons.close_circle,
                     color: Colors.black),
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pop(_controller.numberValue);
                 },
               ),
             ],
@@ -114,6 +115,7 @@ class _Send2State extends State<Send2> {
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
+                      height: 40,
                       child: FlatButton(
                         color: PaypalColors.DarkBlue,
                         textColor: PaypalColors.DarkBlue,
@@ -123,7 +125,8 @@ class _Send2State extends State<Send2> {
                           style: TextStyle(
                               fontFamily: "worksans",
                               color: Colors.white,
-                              fontSize: 18),
+                              fontSize: 17,
+                              fontWeight: FontWeight.w300),
                         ),
                         // onPressed: null,
                         onPressed:

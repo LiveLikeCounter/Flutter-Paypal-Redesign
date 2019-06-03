@@ -9,11 +9,15 @@ class Send1 extends StatefulWidget {
 }
 
 class _Send1State extends State<Send1> {
+  String ammountValue = '0.00';
+  bool showAddNote = false;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           automaticallyImplyLeading: true,
           leading: IconButton(
@@ -83,7 +87,7 @@ class _Send1State extends State<Send1> {
                           Text(
                             'Amount',
                             style:
-                                TextStyle(fontFamily: "worksans", fontSize: 20),
+                                TextStyle(fontFamily: "worksans", fontSize: 17),
                           ),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
@@ -98,21 +102,27 @@ class _Send1State extends State<Send1> {
                               SizedBox(width: 5),
                               InkWell(
                                 child: Text(
-                                  '0,00',
+                                  this.ammountValue,
                                   style: TextStyle(
                                       fontFamily: "worksans",
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500),
                                 ),
-                                onTap: () {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute<Null>(
-                                      builder: (BuildContext context) {
-                                        return Send2();
-                                      },
+                                onTap: () async {
+                                  var navigationResult = await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Send2(),
                                       fullscreenDialog: true,
                                     ),
                                   );
+                                  setState(() {
+                                    this.ammountValue =
+                                        navigationResult.toString();
+                                    if (navigationResult.toString() != '0.0') {
+                                      this.showAddNote = true;
+                                    }
+                                  });
                                 },
                               ),
                             ],
@@ -128,7 +138,7 @@ class _Send1State extends State<Send1> {
                           Text(
                             'Transaction fees',
                             style:
-                                TextStyle(fontFamily: "worksans", fontSize: 20),
+                                TextStyle(fontFamily: "worksans", fontSize: 17),
                           ),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
@@ -142,7 +152,7 @@ class _Send1State extends State<Send1> {
                               ),
                               SizedBox(width: 5),
                               Text(
-                                '0,00',
+                                '0.00',
                                 style: TextStyle(
                                     fontFamily: "worksans",
                                     fontSize: 16,
@@ -185,8 +195,56 @@ class _Send1State extends State<Send1> {
                               color: PaypalColors.Grey, size: 40),
                         ],
                       ),
-                      SizedBox(height: 10),
+                      SizedBox(height: 1),
                       Divider(height: 0.1, color: PaypalColors.Grey),
+                      SizedBox(height: 30),
+                      Opacity(
+                        opacity: this.showAddNote ? 1.0 : 0.0,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              'Add Note',
+                              style: TextStyle(
+                                  fontFamily: "worksans",
+                                  fontSize: 17,
+                                  color: PaypalColors.DarkBlue),
+                            ),
+                            Icon(Icons.chevron_right,
+                                color: PaypalColors.Grey, size: 40),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 1),
+                      Opacity(
+                        opacity: this.showAddNote ? 1.0 : 0.0,
+                        child: Divider(height: 0.1, color: PaypalColors.Grey),
+                      ),
+                      SizedBox(height: 30),
+                      Opacity(
+                        opacity: this.showAddNote ? 1.0 : 0.0,
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          height: 40,
+                          child: FlatButton(
+                            color: PaypalColors.DarkBlue,
+                            textColor: PaypalColors.DarkBlue,
+                            disabledColor: PaypalColors.Grey,
+                            child: Text(
+                              "Send Now",
+                              style: TextStyle(
+                                  fontFamily: "worksans",
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w300),
+                            ),
+                            onPressed: () {},
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 )
