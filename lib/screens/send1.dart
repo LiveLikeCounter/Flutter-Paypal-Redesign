@@ -25,6 +25,7 @@ class _Send1State extends State<Send1> {
           ),
           title: Text('Send to Floki',
               style: TextStyle(fontFamily: "worksans", color: Colors.black)),
+          centerTitle: true,
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),

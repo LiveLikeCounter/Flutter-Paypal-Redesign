@@ -12,6 +12,7 @@ dependencies:
 
   cupertino_icons: ^0.1.2
   community_material_icon: ^3.5.95
+  flutter_masked_text: ^0.8.0
 
 dev_dependencies:
   flutter_test:

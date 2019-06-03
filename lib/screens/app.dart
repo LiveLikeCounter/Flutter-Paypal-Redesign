@@ -157,9 +157,8 @@ AppBar _mainAppBar() {
       'assets/images/icon_settings.png',
       color: PaypalColors.DarkBlue,
     ),
-    title: Center(
-      child: Image.asset('assets/images/Paypal-logo-header.png', height: 25),
-    ),
+    title: Image.asset('assets/images/Paypal-logo-header.png', height: 25),
+    centerTitle: true,
     actions: <Widget>[
       Image.asset('assets/images/icon_school-bell.png',
           color: PaypalColors.DarkBlue)
@@ -168,6 +167,3 @@ AppBar _mainAppBar() {
     elevation: 0.0,
   );
 }
-
-
-
