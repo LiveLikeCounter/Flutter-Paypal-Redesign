@@ -8,9 +8,39 @@ class Send1 extends StatefulWidget {
   _Send1State createState() => _Send1State();
 }
 
-class _Send1State extends State<Send1> {
+class _Send1State extends State<Send1> with SingleTickerProviderStateMixin {
   String ammountValue = '0.00';
   bool showAddNote = false;
+    AnimationController animationController;
+
+  @override
+  void initState() {
+    animationController =
+        AnimationController(vsync: this, duration: Duration(seconds: 1));
+
+    animationController.addListener(() {
+      if (animationController.status.toString() ==
+          'AnimationStatus.completed') {
+        print(animationController.status);
+        animationController.reset();
+      }
+    });
+    super.initState();
+  }
+
+  
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
+
+    _startPayment() {
+    print('Start Payment');
+    animationController.forward();
+    animationController.stop();
+    animationController.forward();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -222,7 +252,8 @@ class _Send1State extends State<Send1> {
                       ),
                       SizedBox(height: 30),
                       Opacity(
-                        opacity: this.showAddNote ? 1.0 : 0.0,
+                        opacity: 1.0,
+                        // opacity: this.showAddNote ? 1.0 : 0.0,
                         child: SizedBox(
                           width: MediaQuery.of(context).size.width,
                           height: 40,
@@ -238,13 +269,34 @@ class _Send1State extends State<Send1> {
                                   fontSize: 17,
                                   fontWeight: FontWeight.w300),
                             ),
-                            onPressed: () {},
+                            onPressed: () => _startPayment(),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30.0),
                             ),
                           ),
                         ),
                       ),
+                      Container(
+                      width: 150,
+                      child: Stack(
+                        children: <Widget>[
+                          Positioned(
+                              top: 38,
+                              left: 56,
+                              child: Image.asset(
+                                  'assets/images/Paypal-logo.png',
+                                  height: 35)),
+                          Align(
+                            alignment: Alignment.center,
+                            child: RotationTransition(
+                              turns: Tween(begin: 0.0, end: 1.0)
+                                  .animate(animationController),
+                              child: Image.asset('assets/images/loading.png'),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                     ],
                   ),
                 )

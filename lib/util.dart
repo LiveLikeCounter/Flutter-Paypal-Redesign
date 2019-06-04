@@ -13,5 +13,6 @@ class PaypalColors {
   static const LightGrey = Color.fromRGBO(242, 242, 242, 1);
   static const Grey = Color.fromRGBO(157, 157, 157, 1);
   static const Black50 = Color.fromRGBO(0, 0, 0, 0.5);
+  static const Green = Color.fromRGBO(61, 179, 158, 1);
 }
 

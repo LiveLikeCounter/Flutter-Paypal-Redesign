@@ -45,6 +45,8 @@ flutter:
     - assets/images/if_9_avatar_2754584.png
     - assets/images/if_10_avatar_2754575.png
     - assets/images/if_12_avatar_2754577.png
+    - assets/images/loading.png
+    - assets/images/checked.png
 
   fonts:
     # w100 Thin, the least thick

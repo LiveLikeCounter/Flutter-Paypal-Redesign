@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -12,15 +13,17 @@ class Send2 extends StatefulWidget {
 }
 
 class _Send2State extends State<Send2> {
-  var _controller =
+  var textFormFieldController =
       MoneyMaskedTextController(decimalSeparator: '.', thousandSeparator: ',');
+
   bool _isButtonDisabled = true;
 
   @override
   void initState() {
-    _controller.updateValue(0.00);
+    textFormFieldController.updateValue(0.00);
     super.initState();
   }
+
 
   _checkInputForConfirm(double amount) {
     if (amount > 0.0) {
@@ -35,11 +38,13 @@ class _Send2State extends State<Send2> {
   }
 
   _startPayment() {
-    Navigator.of(context).pop(_controller.numberValue);
+    print('Start Payment');
+    Navigator.of(context).pop(textFormFieldController.numberValue);
   }
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([]);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Container(
@@ -58,7 +63,8 @@ class _Send2State extends State<Send2> {
                 icon: Icon(CommunityMaterialIcons.close_circle,
                     color: Colors.black),
                 onPressed: () {
-                  Navigator.of(context).pop(_controller.numberValue);
+                  Navigator.of(context)
+                      .pop(textFormFieldController.numberValue);
                 },
               ),
             ],
@@ -86,7 +92,7 @@ class _Send2State extends State<Send2> {
                           fit: FlexFit.loose,
                           flex: 2,
                           child: TextField(
-                            controller: _controller,
+                            controller: textFormFieldController,
                             keyboardType: TextInputType.numberWithOptions(
                                 signed: false, decimal: true),
                             decoration: InputDecoration(
