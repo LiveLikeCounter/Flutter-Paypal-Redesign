@@ -38,7 +38,6 @@ class _Send2State extends State<Send2> {
   }
 
   _startPayment() {
-    print('Start Payment');
     Navigator.of(context).pop(textFormFieldController.numberValue);
   }
 
