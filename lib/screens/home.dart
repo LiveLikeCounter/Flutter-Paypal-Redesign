@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_paypalredesign/util.dart';
 import 'package:flutter_paypalredesign/screens/profile.dart';
 
-
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -206,7 +205,10 @@ ListView _activityList() {
         margin: EdgeInsets.only(bottom: 15),
         decoration: _tileDecoration(),
         child: ListTile(
-          leading: Image.asset('assets/images/photo.png'),
+          leading: Container(
+            width: 42,
+            child: Image.asset('assets/images/if_9_avatar_2754584.png'),
+          ),
           title: Text(
             'Lagertha Lothbrok',
             style: TextStyle(
@@ -278,5 +280,3 @@ BoxDecoration _tileDecoration() {
     ],
   );
 }
-
-

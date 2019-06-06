@@ -1,7 +1,9 @@
+import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_paypalredesign/util.dart';
+import 'package:flutter_paypalredesign/screens/home.dart';
 import 'package:flutter_paypalredesign/screens/send2.dart';
 
 class Send1 extends StatefulWidget {
@@ -12,19 +14,30 @@ class Send1 extends StatefulWidget {
 class _Send1State extends State<Send1> with SingleTickerProviderStateMixin {
   String ammountValue = '0.00';
   bool showAddNote = false;
-  bool pageLoader = false;
+  bool showPageLoader = false;
+  bool showSpinner = false;
+  bool showChecked = false;
   AnimationController animationController;
 
   @override
   void initState() {
     animationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 2));
+        AnimationController(vsync: this, duration: Duration(seconds: 1));
 
     animationController.addListener(() {
       if (animationController.status.toString() ==
           'AnimationStatus.completed') {
-        print(animationController.status);
-        animationController.reset();
+        setState(() {
+          showSpinner = false;
+          showChecked = true;
+        });
+        Timer(
+          Duration(seconds: 1),
+          () => setState(() {
+                showPageLoader = false;
+                Navigator.of(context).pop();
+              }),
+        );
       }
     });
     super.initState();
@@ -38,12 +51,13 @@ class _Send1State extends State<Send1> with SingleTickerProviderStateMixin {
 
   _startPayment() {
     setState(() {
-      pageLoader = true;
+      showPageLoader = true;
+      showSpinner = true;
       animationController.forward();
     });
   }
 
-  Widget _pageLoader() {
+  Widget _showPageLoader() {
     return Stack(
       children: <Widget>[
         Positioned.fill(
@@ -57,30 +71,43 @@ class _Send1State extends State<Send1> with SingleTickerProviderStateMixin {
             ),
           ),
         ),
-        Align(
-            alignment: Alignment.center,
-            child: Image.asset('assets/images/Paypal-logo.png', height: 35)),
-        Align(
-          alignment: Alignment.center,
-          child: RotationTransition(
-            turns: Tween(begin: 0.0, end: 2.0).animate(animationController),
-            child: Image.asset('assets/images/loading.png'),
-          ),
-        ),
-        Align(
-          alignment: Alignment.center,
-          child: Column(
-            children: <Widget>[
-              Image.asset('assets/images/checked.png'),
-              SizedBox(height: 25),
-              Text(
-                'Transaction Successful',
-                style: TextStyle(
-                    fontFamily: "worksans", fontSize: 17, color: PaypalColors.Green),
-              ),
-            ],
-          ),
-        ),
+        showSpinner
+            ? Align(
+                alignment: Alignment.center,
+                child: Image.asset('assets/images/Paypal-logo.png', height: 35),
+              )
+            : Container(),
+        showSpinner
+            ? Align(
+                alignment: Alignment.center,
+                child: RotationTransition(
+                  turns:
+                      Tween(begin: 0.0, end: 2.0).animate(animationController),
+                  child: Image.asset('assets/images/loading.png'),
+                ),
+              )
+            : Container(),
+        showChecked
+            ? Align(
+                alignment: Alignment.center,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Image.asset('assets/images/checked.png'),
+                    SizedBox(height: 25),
+                    Material(
+                      child: Text(
+                        'Transaction Successful',
+                        style: TextStyle(
+                            fontFamily: "worksans",
+                            fontSize: 17,
+                            color: PaypalColors.Green),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            : Container(),
       ],
     );
   }
@@ -305,8 +332,8 @@ class _Send1State extends State<Send1> with SingleTickerProviderStateMixin {
                             ),
                             SizedBox(height: 30),
                             Opacity(
-                              opacity: 1.0,
-                              // opacity: this.showAddNote ? 1.0 : 0.0,
+                              // opacity: 1.0,
+                              opacity: this.showAddNote ? 1.0 : 0.0,
                               child: SizedBox(
                                 width: MediaQuery.of(context).size.width,
                                 height: 40,
@@ -337,7 +364,7 @@ class _Send1State extends State<Send1> with SingleTickerProviderStateMixin {
                 ),
               ),
             ),
-            pageLoader ? _pageLoader() : Container(),
+            showPageLoader ? _showPageLoader() : Container(),
           ],
         ),
       ),
