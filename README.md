@@ -9,6 +9,12 @@ This Flutter project is inspired from the winner *Jordan Fokoua* of the Uplabs ð
 - Install the dependicies
 - Run it
 
+## Preview
+
+The app is based on Jordans design, see a preview here:
+
+
+
 ## Support me
 
 I realy like to make as much (free) beautifull Flutter apps, so you get inspired!
