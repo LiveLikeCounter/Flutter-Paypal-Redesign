@@ -24,5 +24,4 @@ Thank you in advanced 👍
 
 ## Other Flutter Apps
 
-- Flutter Firestore Auth
-- Flutter Airbnb clone
+There are other example Apps made with flutter, see more on [Interestinate](https://interestinate.com)
