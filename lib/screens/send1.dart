@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_paypalredesign/util.dart';
-import 'package:flutter_paypalredesign/screens/home.dart';
 import 'package:flutter_paypalredesign/screens/send2.dart';
 
 class Send1 extends StatefulWidget {
