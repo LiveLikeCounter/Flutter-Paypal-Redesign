@@ -13,7 +13,7 @@ This Flutter project is inspired from the winner *Jordan Fokoua* of the Uplabs ð
 
 The app is based on Jordans design, see a preview here:
 
-![App preview](doc/App Preview.gif)
+![App preview](doc/AppPreview.gif)
 
 
 ## Support me
