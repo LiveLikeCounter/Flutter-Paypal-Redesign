@@ -18,7 +18,7 @@ The app is based on Jordans design, see a preview here:
 
 ## Support me
 
-I realy like to make as much (free) beautifull Flutter apps, so you get inspired!
+I really like to make as much (free) beautiful Flutter apps, so you get inspired!
 Hence you can support me by:
 
 ⭐️ this repo if you like it.
