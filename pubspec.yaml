@@ -23,30 +23,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/chip_thumb.png
-    - assets/images/icon_home.png
-    - assets/images/icon_orion_user-group.png
-    - assets/images/icon_recieve.png
-    - assets/images/icon_school-bell.png
-    - assets/images/icon_send.png
-    - assets/images/icon_settings.png
-    - assets/images/icon_shop.png
-    - assets/images/Nike.png
-    - assets/images/Paypal-logo-header.png
-    - assets/images/Paypal-logo.png
-    - assets/images/photo.png
-    - assets/images/Visa-logo.png
-    - assets/images/if_1_avatar_2754574.png
-    - assets/images/if_2_avatar_2754578.png
-    - assets/images/if_3_avatar_2754579.png
-    - assets/images/if_4_avatar_2754580.png
-    - assets/images/if_5_avatar_2754581.png
-    - assets/images/if_8_avatar_2754583.png
-    - assets/images/if_9_avatar_2754584.png
-    - assets/images/if_10_avatar_2754575.png
-    - assets/images/if_12_avatar_2754577.png
-    - assets/images/loading.png
-    - assets/images/checked.png
+    - images/
 
   fonts:
     # w100 Thin, the least thick
